@@ -14,6 +14,7 @@ class Pokemon:
         else:
             self.ivs = ivs
         data = get_pokemon(index)
+        self.name = data["Name"]
         self.level = level
         self.types = [
             data["Type1"],
@@ -26,12 +27,13 @@ class Pokemon:
             "Special": int(float(2 * data["Special"] + 2 * self.ivs["Special"]) * self.level / 100 + 5),
             "Speed": int(float(2 * data["Speed"] + 2 * self.ivs["Speed"]) * self.level / 100 + 5)
         }
+        self.currHP = self.stats["HP"]
         if moves is None:
             self.moves = [
                 Move(random.randint(0, 164)),
-                Move(164),
-                Move(164),
-                Move(164)
+                Move(random.randint(0, 164)),
+                Move(random.randint(0, 164)),
+                Move(random.randint(0, 164))
             ]
         else:
             self.moves = moves
@@ -39,12 +41,19 @@ class Pokemon:
     def attack(self, attack, opponent):
         return
 
+    def get_info(self):
+        return "Name: {}\nHP: {}\nMove 1: {}\nMove 2: {}\nMove 3: {}\nMove 4: {}" \
+            .format(self.name, self.currHP, self.moves[0].get_info(), self.moves[1].get_info(), self.moves[2].get_info(), self.moves[3].get_info())
+
 
 class Fight:
     def __init__(self, myPokemon, otherPokemon):
         self.myPokemon = myPokemon
         self.otherPokemon = otherPokemon
         return
+
+    def get_info(self):
+        return "{}\n\n{}".format(self.myPokemon.get_info(), self.otherPokemon.get_info())
 
 
 class Move:
@@ -60,15 +69,14 @@ class Move:
         self.type = data['Type']
         return
 
-    def print_info(self):
-        print {'PP': self.pp,
-               'Acc.': self.acc,
-               'Name': self.name,
-               'Power': self.power,
-               'Effect': self.effect,
-               'Cat.': self.category,
-               'Type': self.type
-               }
+    def get_info(self):
+        return {'PP': self.pp,
+                'Acc.': self.acc,
+                'Name': self.name,
+                'Power': self.power,
+                'Cat.': self.category,
+                'Type': self.type
+                }
 
 
 def main():
