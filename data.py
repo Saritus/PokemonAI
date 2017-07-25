@@ -188,7 +188,7 @@ type_multiplicator = {
 
 
 def get_pokemon(index):
-    return pokemon[index - 1]
+    return pokemon[index]
 
 
 def get_type_multiplicator(attack, defense):
