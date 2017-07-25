@@ -165,6 +165,6 @@ if __name__ == "__main__":
         print("Epoch {:03d}/999 | Loss {:.4f} | Win count {}".format(e, loss, win_cnt))
 
     # Save trained model weights and architecture, this will be used by the visualization code
-    model.save_weights("model.h5", overwrite=True)
-    with open("model.json", "w") as outfile:
+    model.save_weights("model/model.h5", overwrite=True)
+    with open("model/model.json", "w") as outfile:
         json.dump(model.to_json(), outfile)

@@ -8,9 +8,9 @@ if __name__ == "__main__":
     # Make sure this grid size matches the value used fro training
     grid_size = 10
 
-    with open("model.json", "r") as jfile:
+    with open("model/model.json", "r") as jfile:
         model = model_from_json(json.load(jfile))
-    model.load_weights("model.h5")
+    model.load_weights("model/model.h5")
     model.compile("sgd", "mse")
 
     # Define environment, game
