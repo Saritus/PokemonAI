@@ -185,3 +185,10 @@ type_multiplicator = {
                "Psychic": 1, "Bug": 1, "Rock": 1, "Ghost": 1, "Dragon": 2}
 }
 
+
+def main():
+    return
+
+
+if __name__ == "__main__":
+    main()
