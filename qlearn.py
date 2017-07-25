@@ -161,7 +161,7 @@ if __name__ == "__main__":
             inputs, targets = exp_replay.get_batch(model, batch_size=batch_size)
 
             loss += model.train_on_batch(inputs, targets)
-        print("Epoch {:03d}/{} | Loss {:.4f} | Win count {} | Reward {}".format(e + 1, epoch, loss, win_cnt, round(allreward / win_cnt, 3)))
+        print("Epoch {:03d}/{} | Loss {:.4f} | Win count {} | Reward {}".format(e + 1, epoch, loss, win_cnt, round(allreward, 3)))
 
     # Save trained model weights and architecture, this will be used by the visualization code
     model.save_weights("model/model.h5", overwrite=True)
