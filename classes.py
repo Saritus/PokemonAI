@@ -1,9 +1,9 @@
-from data import get_pokemon
+from data import get_pokemon, get_move
 import random
 
 
 class Pokemon:
-    def __init__(self, index, level=5, ivs=None):
+    def __init__(self, index, level=5, ivs=None, moves=None):
         if ivs is None:
             self.ivs = {"HP": random.randint(0, 15),
                         "Attack": random.randint(0, 15),
@@ -26,6 +26,19 @@ class Pokemon:
             "Special": int(float(2 * data["Special"] + 2 * self.ivs["Special"]) * self.level / 100 + 5),
             "Speed": int(float(2 * data["Speed"] + 2 * self.ivs["Speed"]) * self.level / 100 + 5)
         }
+        if moves is None:
+            self.moves = [
+                Move(random.randint(0, 164)),
+                Move(164),
+                Move(164),
+                Move(164)
+            ]
+        else:
+            self.moves = moves
+
+    def attack(self, attack, opponent):
+        return
+
 
 class Fight:
     def __init__(self, myPokemon, otherPokemon):
