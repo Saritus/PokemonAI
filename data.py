@@ -1,4 +1,5 @@
 pokemon = [
+    {"Number": 0, "Name": "Missingno", "Type1": "", "Type2": ""},
     {"Number": 1, "Name": "Bulbasaur", "Type1": "Grass", "Type2": "Poison"},
     {"Number": 2, "Name": "Ivysaur", "Type1": "Grass", "Type2": "Poison"},
     {"Number": 3, "Name": "Venusaur", "Type1": "Grass", "Type2": "Poison"},
