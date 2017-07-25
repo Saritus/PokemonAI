@@ -131,6 +131,7 @@ if __name__ == "__main__":
 
     # Train
     win_cnt = 0
+    allreward = 0.
     for e in range(epoch):
         loss = 0.
         env.reset()
@@ -149,6 +150,7 @@ if __name__ == "__main__":
 
             # apply action, get rewards and new state
             input_t, reward, game_over = env.act(action)
+            allreward += reward
             if reward == 1:
                 win_cnt += 1
 
@@ -159,7 +161,7 @@ if __name__ == "__main__":
             inputs, targets = exp_replay.get_batch(model, batch_size=batch_size)
 
             loss += model.train_on_batch(inputs, targets)
-        print("Epoch {:03d}/{} | Loss {:.4f} | Win count {}".format(e + 1, epoch, loss, win_cnt))
+        print("Epoch {:03d}/{} | Loss {:.4f} | Win count {} | Reward {}".format(e + 1, epoch, loss, win_cnt, round(allreward / win_cnt, 3)))
 
     # Save trained model weights and architecture, this will be used by the visualization code
     model.save_weights("model/model.h5", overwrite=True)
