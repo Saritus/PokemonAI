@@ -186,7 +186,7 @@ type_multiplicator = {
                "Psychic": 1, "Bug": 1, "Rock": 1, "Ghost": 1, "Dragon": 2, "": 1}
 }
 
-moves = [
+move = [
     {"Name": "Absorb", "Type": "Grass", "Cat.": "Special", "Power": "20", "Acc.": "100", "PP": "25",
      "Effect": "User recovers half the HP inflicted on opponent."},
     {"Name": "Acid", "Type": "Poison", "Cat.": "Special", "Power": "40", "Acc.": "100", "PP": "30",
@@ -412,6 +412,10 @@ def get_pokemon(index):
 
 def get_type_multiplicator(attack, defense):
     return type_multiplicator[attack][defense]
+
+
+def get_move(index):
+    return move[index]
 
 
 def main():
