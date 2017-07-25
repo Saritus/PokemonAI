@@ -39,6 +39,9 @@ class Pokemon:
             self.moves = moves
 
     def attack(self, attack, opponent):
+        damage = self.moves[attack].power
+        opponent.currHP = max(0, opponent.currHP - damage)
+        self.moves[attack].pp -= 1
         return
 
     def get_info(self):
