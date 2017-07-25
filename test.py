@@ -4,7 +4,6 @@ import numpy as np
 from keras.models import model_from_json
 from qlearn import Catch
 
-
 if __name__ == "__main__":
     # Make sure this grid size matches the value used fro training
     grid_size = 10
@@ -24,7 +23,7 @@ if __name__ == "__main__":
         # get initial input
         input_t = env.observe()
 
-        plt.imshow(input_t.reshape((grid_size,)*2),
+        plt.imshow(input_t.reshape((grid_size,) * 2),
                    interpolation='none', cmap='gray')
         plt.savefig("%03d.png" % c)
         c += 1
@@ -38,7 +37,7 @@ if __name__ == "__main__":
             # apply action, get rewards and new state
             input_t, reward, game_over = env.act(action)
 
-            plt.imshow(input_t.reshape((grid_size,)*2),
+            plt.imshow(input_t.reshape((grid_size,) * 2),
                        interpolation='none', cmap='gray')
             plt.savefig("%03d.png" % c)
             c += 1
