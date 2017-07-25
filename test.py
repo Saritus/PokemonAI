@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
         plt.imshow(input_t.reshape((grid_size,) * 2),
                    interpolation='none', cmap='gray')
-        plt.savefig("%03d.png" % c)
+        plt.savefig("images/%03d.png" % c)
         c += 1
         while not game_over:
             input_tm1 = input_t
@@ -39,5 +39,5 @@ if __name__ == "__main__":
 
             plt.imshow(input_t.reshape((grid_size,) * 2),
                        interpolation='none', cmap='gray')
-            plt.savefig("%03d.png" % c)
+            plt.savefig("images/%03d.png" % c)
             c += 1
