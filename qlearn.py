@@ -41,13 +41,10 @@ class Catch(object):
 
     def _get_reward(self):
         fruit_row, fruit_col, basket = self.state[0]
-        if fruit_row == self.grid_size - 1:
-            if abs(fruit_col - basket) <= 1:
-                return 1
-            else:
-                return -1
+        if abs(fruit_col - basket) <= 1:
+            return 1
         else:
-            return 0
+            return -1
 
     def _is_over(self):
         if self.state[0, 0] == self.grid_size - 1:
