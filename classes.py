@@ -8,6 +8,13 @@ class Pokemon:
             self.data["Type1"],
             self.data["Type2"]
         ]
+        self.stats = {
+            "Hit Points": 0,
+            "Attack": 0,
+            "Defense": 0,
+            "Special": 0,
+            "Speed": 0
+        }
 
 
 def main():
