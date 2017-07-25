@@ -141,3 +141,7 @@ $RECYCLE.BIN/
 # IntelliJ
 .idea/
 *.iml
+
+# Project files
+model/
+images/
