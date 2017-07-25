@@ -180,7 +180,7 @@ type_multiplicator = {
     "Rock": {"Normal": 1, "Fire": 2, "Water": 1, "Electric": 1, "Grass": 1, "Ice": 2, "Fighting": 0.5, "Poison": 1, "Ground": 0.5, "Flying": 2,
              "Psychic": 1, "Bug": 2, "Rock": 1, "Ghost": 1, "Dragon": 1},
     "Ghost": {"Normal": 0, "Fire": 1, "Water": 1, "Electric": 1, "Grass": 1, "Ice": 1, "Fighting": 1, "Poison": 1, "Ground": 1, "Flying": 1,
-              "Psychic": 2, "Bug": 1, "Rock": 1, "Ghost": 2, "Dragon": 1},
+              "Psychic": 0, "Bug": 1, "Rock": 1, "Ghost": 2, "Dragon": 1},
     "Dragon": {"Normal": 1, "Fire": 1, "Water": 1, "Electric": 1, "Grass": 1, "Ice": 1, "Fighting": 1, "Poison": 1, "Ground": 1, "Flying": 1,
                "Psychic": 1, "Bug": 1, "Rock": 1, "Ghost": 1, "Dragon": 2}
 }
