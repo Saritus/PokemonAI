@@ -34,6 +34,29 @@ class Fight:
         return
 
 
+class Move:
+    def __init__(self, index):
+        data = get_move(index)
+        self.data = data
+        self.pp = data['PP']
+        self.acc = data['Acc.']
+        self.name = data['Name']
+        self.power = data['Power']
+        self.effect = data['Effect']
+        self.category = data['Cat.']
+        self.type = data['Type']
+        return
+
+    def print_info(self):
+        print {'PP': self.pp,
+               'Acc.': self.acc,
+               'Name': self.name,
+               'Power': self.power,
+               'Effect': self.effect,
+               'Cat.': self.category,
+               'Type': self.type
+               }
+
 
 def main():
     return
