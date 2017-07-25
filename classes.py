@@ -1,24 +1,30 @@
 from data import get_pokemon
-from math import floor
+import random
 
 
 class Pokemon:
-    def __init__(self, index, level=5):
+    def __init__(self, index, level=5, ivs=None):
+        if ivs is None:
+            self.ivs = {"HP": random.randint(0, 15),
+                        "Attack": random.randint(0, 15),
+                        "Defense": random.randint(0, 15),
+                        "Special": random.randint(0, 15),
+                        "Speed": random.randint(0, 15)
+                        }
+        else:
+            self.ivs = ivs
+        data = get_pokemon(index)
         self.level = level
-        self.data = get_pokemon(index)
         self.types = [
-            self.data["Type1"],
-            self.data["Type2"]
+            data["Type1"],
+            data["Type2"]
         ]
-        B = 1  # B (Base Stat)
-        I = 1  # I (Individual Value)
-        L = self.level  # L (Level)
         self.stats = {
-            "HP": floor((2 * B + I) * L / 100 + 5),
-            "Attack": 0,
-            "Defense": 0,
-            "Special": 0,
-            "Speed": 0
+            "HP": int(float(2 * data["HP"] + 2 * self.ivs["HP"]) * self.level / 100 + self.level + 10),
+            "Attack": int(float(2 * data["Attack"] + 2 * self.ivs["Attack"]) * self.level / 100 + 5),
+            "Defense": int(float(2 * data["Defense"] + 2 * self.ivs["Defense"]) * self.level / 100 + 5),
+            "Special": int(float(2 * data["Special"] + 2 * self.ivs["Special"]) * self.level / 100 + 5),
+            "Speed": int(float(2 * data["Speed"] + 2 * self.ivs["Speed"]) * self.level / 100 + 5)
         }
 
 
