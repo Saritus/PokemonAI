@@ -27,6 +27,13 @@ class Pokemon:
             "Speed": int(float(2 * data["Speed"] + 2 * self.ivs["Speed"]) * self.level / 100 + 5)
         }
 
+class Fight:
+    def __init__(self, myPokemon, otherPokemon):
+        self.myPokemon = myPokemon
+        self.otherPokemon = otherPokemon
+        return
+
+
 
 def main():
     return
