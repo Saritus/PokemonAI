@@ -161,7 +161,7 @@ if __name__ == "__main__":
             # adapt model
             inputs, targets = exp_replay.get_batch(model, batch_size=batch_size)
 
-            loss += model.train_on_batch(inputs, targets)[0]
+            loss += model.train_on_batch(inputs, targets)
         print("Epoch {:03d}/999 | Loss {:.4f} | Win count {}".format(e, loss, win_cnt))
 
     # Save trained model weights and architecture, this will be used by the visualization code
