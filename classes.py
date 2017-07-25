@@ -50,13 +50,29 @@ class Pokemon:
 
 
 class Fight:
-    def __init__(self, myPokemon, otherPokemon):
-        self.myPokemon = myPokemon
-        self.otherPokemon = otherPokemon
+    def __init__(self, pokemon1, pokemon2):
+        self.pokemon1 = pokemon1
+        self.pokemon2 = pokemon2
+        self.currentPokemon = 1
         return
 
     def get_info(self):
-        return "{}\n\n{}".format(self.myPokemon.get_info(), self.otherPokemon.get_info())
+        return "###\n{}\n\n{}\n".format(self.pokemon1.get_info(), self.pokemon2.get_info())
+
+    def attack(self, move):
+        if self.currentPokemon is 1:
+            self.pokemon1.attack(move, self.pokemon2)
+            self.currentPokemon = 2
+        elif self.currentPokemon is 2:
+            self.pokemon2.attack(move, self.pokemon1)
+            self.currentPokemon = 1
+        else:
+            raise IndexError("Invalid current pokemon selected")
+        print self.get_info()
+        return
+
+    def is_over(self):
+        return (self.pokemon1.currHP is 0) or (self.pokemon2.currHP is 0)
 
 
 class Move:
