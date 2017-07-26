@@ -3,6 +3,7 @@ import numpy as np
 from keras.models import Sequential
 from keras.layers.core import Dense
 from keras.optimizers import sgd
+from classes import Fight
 
 
 class Catch(object):
@@ -107,15 +108,15 @@ class ExperienceReplay(object):
 if __name__ == "__main__":
     # parameters
     epsilon = .1  # exploration
-    num_actions = 3  # [move_left, stay, move_right]
+    num_actions = 4  # [move_left, stay, move_right]
     epoch = 1000
     max_memory = 500
     hidden_size = 100
     batch_size = 50
-    grid_size = 10
+    # grid_size = 10
 
     model = Sequential()
-    model.add(Dense(hidden_size, input_shape=(grid_size ** 2,), activation='relu'))
+    model.add(Dense(hidden_size, input_shape=(2,), activation='relu'))
     model.add(Dense(hidden_size, activation='relu'))
     model.add(Dense(num_actions))
     model.compile(sgd(lr=.2), "mse")
@@ -124,7 +125,7 @@ if __name__ == "__main__":
     # model.load_weights("model.h5")
 
     # Define environment/game
-    env = Catch(grid_size)
+    env = Fight()
 
     # Initialize experience replay object
     exp_replay = ExperienceReplay(max_memory=max_memory)
