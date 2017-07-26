@@ -1,5 +1,7 @@
 from data import get_pokemon, get_move
 import random
+import time
+import math
 
 
 class Pokemon:
@@ -39,10 +41,18 @@ class Pokemon:
             self.moves = moves
 
     def attack(self, attack, opponent):
-        damage = self.moves[attack].power
+        L = self.level
+        if self.moves[attack].category is "Special":
+            A = self.stats["Special"]
+            D = opponent.stats["Special"]
+        else:
+            A = self.stats["Attack"]
+            D = opponent.stats["Defense"]
+        P = self.moves[attack].power
+        damage = int(math.floor(math.floor(2 * L / 5 + 2) * A * P / D) / 50) + 2
         opponent.currHP = max(0, opponent.currHP - damage)
         self.moves[attack].pp -= 1
-        return
+        return damage
 
     def get_info(self):
         return "Name: {}\nHP: {}\nMove 1: {}\nMove 2: {}\nMove 3: {}\nMove 4: {}" \
@@ -61,14 +71,20 @@ class Fight:
 
     def attack(self, move):
         if self.currentPokemon is 1:
-            self.pokemon1.attack(move, self.pokemon2)
+            dmg = self.pokemon1.attack(move, self.pokemon2)
+            print "{} used {}. {} Damage".format(self.pokemon1.name, self.pokemon1.moves[move].name, dmg)
             self.currentPokemon = 2
         elif self.currentPokemon is 2:
-            self.pokemon2.attack(move, self.pokemon1)
+            dmg = self.pokemon2.attack(move, self.pokemon1)
+            print "{} used {}. {} Damage".format(self.pokemon2.name, self.pokemon2.moves[move].name, dmg)
             self.currentPokemon = 1
         else:
             raise IndexError("Invalid current pokemon selected")
-        print self.get_info()
+
+        print self.pokemon1.name, self.pokemon1.currHP
+        print self.pokemon2.name, self.pokemon2.currHP
+        print ""
+
         return
 
     def is_over(self):
