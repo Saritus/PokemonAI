@@ -2,10 +2,11 @@ from data import get_pokemon, get_move
 import random
 import time
 import math
+import numpy as np
 
 
 class Pokemon:
-    def __init__(self, index, level=5, ivs=None, moves=None):
+    def __init__(self, index=0, level=0, ivs=None, moves=None):
         if ivs is None:
             self.ivs = {"HP": random.randint(0, 15),
                         "Attack": random.randint(0, 15),
@@ -15,9 +16,11 @@ class Pokemon:
                         }
         else:
             self.ivs = ivs
+        if index == 0:
+            index = random.randint(1, 151)
         data = get_pokemon(index)
         self.name = data["Name"]
-        self.level = level
+        self.level = level if level is not 0 else random.randint(1, 100)
         self.types = [
             data["Type1"],
             data["Type2"]
@@ -60,11 +63,9 @@ class Pokemon:
 
 
 class Fight:
-    def __init__(self, pokemon1, pokemon2):
-        self.pokemon1 = pokemon1
-        self.pokemon2 = pokemon2
-        self.currentPokemon = 1
-        return
+    # Done
+    def __init__(self):
+        self.reset()
 
     def get_info(self):
         return "###\n{}\n\n{}\n".format(self.pokemon1.get_info(), self.pokemon2.get_info())
@@ -87,8 +88,46 @@ class Fight:
 
         return
 
-    def is_over(self):
+    def _update_state(self, action):
+        self.attack(action)
+
+    # Done
+    def _draw_state(self):
+        infos = [
+            self.pokemon1.currHP,
+            self.pokemon2.currHP
+        ]
+        return np.asarray(infos)
+
+    # Done
+    def _get_reward(self):
+        if self.currentPokemon == 1:
+            return self.pokemon1.currHP if self.pokemon2.currHP is 0 else self.pokemon1.currHP / self.pokemon2.currHP
+        else:
+            return self.pokemon2.currHP if self.pokemon1.currHP is 0 else self.pokemon2.currHP / self.pokemon1.currHP
+
+    # Done
+    def _is_over(self):
         return (self.pokemon1.currHP is 0) or (self.pokemon2.currHP is 0)
+
+    # Done
+    def observe(self):
+        canvas = self._draw_state()
+        return canvas.reshape((1, -1))
+
+    # Done
+    def act(self, action):
+        self._update_state(action)
+        reward = self._get_reward()
+        game_over = self._is_over()
+        return self.observe(), reward, game_over
+
+    # Done
+    def reset(self):
+        self.pokemon1 = Pokemon()
+        self.pokemon2 = Pokemon()
+        self.currentPokemon = 1
+        self.state = np.asarray([self.pokemon1.currHP, self.pokemon2.currHP])[np.newaxis]
 
 
 class Move:
@@ -115,6 +154,13 @@ class Move:
 
 
 def main():
+    bulbasaur = Pokemon()
+    charmander = Pokemon()
+    fight = Fight(bulbasaur, charmander)
+    print fight.get_info()
+    while not fight.is_over():
+        fight.attack(random.randint(0, 3))
+        time.sleep(1)
     return
 
 
