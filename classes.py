@@ -157,13 +157,11 @@ class Move:
         return
 
     def get_info(self):
-        return {'PP': self.pp,
-                'Acc.': self.acc,
-                'Name': self.name,
-                'Power': self.power,
-                'Cat.': self.category,
-                'Type': self.type
-                }
+        return [
+            self.pp,
+            self.acc,
+            self.power
+        ]
 
 
 def main():
