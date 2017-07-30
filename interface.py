@@ -8,16 +8,30 @@ class App:
     def __init__(self, master):
         # Frame
         frame = Frame(master)
-        frame.pack()
+        frame.pack(side=BOTTOM)
+
+        # Buttons
+        self.move1 = Button(
+            frame, text="Attack 1",
+            command=self.change_image, width=20
+        ).grid(row=0, column=0)
+        self.move2 = Button(
+            frame, text="Attack 2",
+            command=self.change_image, width=20
+        ).grid(row=0, column=1)
+        self.move3 = Button(
+            frame, text="Attack 3",
+            command=self.change_image, width=20
+        ).grid(row=1, column=0)
+        self.move4 = Button(
+            frame, text="Attack 4",
+            command=self.change_image, width=20
+        ).grid(row=1, column=1)
 
         # Image
         self.canvas1 = Canvas(master)
         self.canvas1.pack(side=BOTTOM)
         self.change_image(self.canvas1)
-
-        # Buttons
-        self.accept = Button(frame, text="Accept", command=self.change_image, width=10)
-        self.accept.pack(side=LEFT)
 
     def change_image(self, canvas):
         # Get image
