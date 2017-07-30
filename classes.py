@@ -83,7 +83,6 @@ class Pokemon:
 
 
 class Fight:
-    # Done
     def __init__(self):
         self.reset()
 
@@ -95,9 +94,9 @@ class Fight:
         self.dmg = self.current.attack(move, self.opponent)
         # print "{} used {}({}). {} Damage".format(self.current.name, self.current.moves[move].name, move, dmg)
 
-        print self.pokemon1.name, self.pokemon1.currHP
-        print self.pokemon2.name, self.pokemon2.currHP
-        print ""
+        # print self.current.name, self.current.currHP
+        # print self.opponent.name, self.opponent.currHP
+        # print ""
 
         return
 
@@ -168,9 +167,9 @@ class Move:
 def main():
     bulbasaur = Pokemon()
     charmander = Pokemon()
-    fight = Fight(bulbasaur, charmander)
+    fight = Fight()
     print fight.get_info()
-    while not fight.is_over():
+    while not fight._is_over():
         fight.attack(random.randint(0, 3))
         time.sleep(1)
     return
