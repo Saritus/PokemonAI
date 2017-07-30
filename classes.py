@@ -139,10 +139,8 @@ class Fight:
         return self.observe(), reward, game_over
 
     def reset(self):
-        self.pokemon1 = Pokemon()
-        self.pokemon2 = Pokemon()
-        self.currentPokemon = 1
-        self.state = np.asarray([self.pokemon1.currHP, self.pokemon2.currHP])[np.newaxis]
+        self.current = Pokemon()
+        self.opponent = Pokemon()
 
 
 class Move:
