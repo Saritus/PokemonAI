@@ -114,10 +114,11 @@ class Fight:
         return infos
 
     def _get_reward(self):
-        if self.currentPokemon == 1:
-            return self.pokemon1.currHP if self.pokemon2.currHP is 0 else self.pokemon1.currHP / self.pokemon2.currHP
-        else:
-            return self.pokemon2.currHP if self.pokemon1.currHP is 0 else self.pokemon2.currHP / self.pokemon1.currHP
+        if self.opponent.currHP is 0:
+            return 1
+        elif self.current.currHP is 0:
+            return -1
+        return -0.1
 
     def _is_over(self):
         if self.current.currHP is 0:
