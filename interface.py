@@ -12,26 +12,26 @@ class App:
         frame.pack()
 
         # Image
-        self.canvas = Canvas(master)
-        self.canvas.pack(side=BOTTOM)
-        self.change_image()
+        self.canvas1 = Canvas(master)
+        self.canvas1.pack(side=BOTTOM)
+        self.change_image(self.canvas1)
 
         # Buttons
         self.accept = Button(frame, text="Accept", command=self.change_image, width=10)
         self.accept.pack(side=LEFT)
 
-    def change_image(self):
+    def change_image(self, canvas):
         # Get image
-        pilImage = PIL.Image.open("Sprites/100.PNG")
+        pilImage = PIL.Image.open("Sprites/100.PNG").resize((500, 500), PIL.Image.ANTIALIAS)
 
         # Change canvas size
-        self.canvas.config(width=pilImage.width, height=pilImage.height)
-        self.imagesprite = self.canvas.create_image(pilImage.width / 2, pilImage.height / 2)
+        canvas.config(width=pilImage.width, height=pilImage.height)
+        imagesprite = canvas.create_image(pilImage.width / 2, pilImage.height / 2)
 
         # Show image on canvas
         self.image = ImageTk.PhotoImage(pilImage)
-        self.canvas.itemconfig(self.imagesprite, image=self.image)
-        return self.imagesprite
+        canvas.itemconfig(imagesprite, image=self.image)
+        return imagesprite
 
 
 def main():
