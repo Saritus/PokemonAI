@@ -2,7 +2,6 @@
 
 from Tkinter import *
 from PIL import ImageTk, Image
-import PIL
 
 
 class App:
@@ -22,7 +21,7 @@ class App:
 
     def change_image(self, canvas):
         # Get image
-        pilImage = PIL.Image.open("Sprites/100.PNG").resize((500, 500), PIL.Image.ANTIALIAS)
+        pilImage = Image.open("Sprites/100.PNG").resize((500, 500), Image.ANTIALIAS)
 
         # Change canvas size
         canvas.config(width=pilImage.width, height=pilImage.height)
