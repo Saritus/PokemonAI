@@ -21,7 +21,7 @@ class Pokemon:
         data = get_pokemon(index)
         self.index = index
         self.name = data["Name"]
-        self.level = level if level is not 0 else random.randint(1, 100)
+        self.level = level if level is not 0 else 100
         self.types = [
             data["Type1"],
             data["Type2"]
