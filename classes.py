@@ -120,9 +120,14 @@ class Fight:
         else:
             return self.pokemon2.currHP if self.pokemon1.currHP is 0 else self.pokemon2.currHP / self.pokemon1.currHP
 
-    # Done
     def _is_over(self):
-        return (self.pokemon1.currHP is 0) or (self.pokemon2.currHP is 0)
+        if self.current.currHP is 0:
+            print "{} won against {}".format(self.opponent.name, self.current.name)
+            return True
+        elif self.opponent.currHP is 0:
+            print "{} won against {}".format(self.current.name, self.opponent.name)
+            return True
+        return False
 
     # Done
     def observe(self):
