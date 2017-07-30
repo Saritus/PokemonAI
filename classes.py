@@ -66,8 +66,20 @@ class Pokemon:
         return damage
 
     def get_info(self):
-        return "Name: {}\nHP: {}\nMove 1: {}\nMove 2: {}\nMove 3: {}\nMove 4: {}" \
-            .format(self.name, self.currHP, self.moves[0].get_info(), self.moves[1].get_info(), self.moves[2].get_info(), self.moves[3].get_info())
+        info = [
+            self.index,
+            self.currHP,
+            self.stats["HP"],
+            self.stats["Attack"],
+            self.stats["Defense"],
+            self.stats["Special"],
+            self.stats["Speed"],
+        ]
+        info.extend(self.moves[0].get_info())
+        info.extend(self.moves[1].get_info())
+        info.extend(self.moves[2].get_info())
+        info.extend(self.moves[3].get_info())
+        return info
 
 
 class Fight:
