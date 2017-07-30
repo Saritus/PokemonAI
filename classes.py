@@ -113,7 +113,6 @@ class Fight:
         # print infos.size
         return infos
 
-    # Done
     def _get_reward(self):
         if self.currentPokemon == 1:
             return self.pokemon1.currHP if self.pokemon2.currHP is 0 else self.pokemon1.currHP / self.pokemon2.currHP
@@ -129,19 +128,16 @@ class Fight:
             return True
         return False
 
-    # Done
     def observe(self):
         canvas = self._draw_state()
         return canvas.reshape((1, -1))
 
-    # Done
     def act(self, action):
         self._update_state(action)
         reward = self._get_reward()
         game_over = self._is_over()
         return self.observe(), reward, game_over
 
-    # Done
     def reset(self):
         self.pokemon1 = Pokemon()
         self.pokemon2 = Pokemon()
