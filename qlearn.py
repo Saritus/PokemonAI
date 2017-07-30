@@ -116,7 +116,7 @@ if __name__ == "__main__":
     # grid_size = 10
 
     model = Sequential()
-    model.add(Dense(hidden_size, input_shape=(2,), activation='relu'))
+    model.add(Dense(hidden_size, input_shape=(38,), activation='relu'))
     model.add(Dense(hidden_size, activation='relu'))
     model.add(Dense(num_actions))
     model.compile(sgd(lr=.2), "mse")
