@@ -104,13 +104,14 @@ class Fight:
     def _update_state(self, action):
         self.attack(action)
 
-    # Done
     def _draw_state(self):
         infos = [
-            self.pokemon1.currHP,
-            self.pokemon2.currHP
+            self.current.get_info(),
+            self.opponent.get_info(),
         ]
-        return np.asarray(infos)
+        infos = np.asarray(infos)
+        # print infos.size
+        return infos
 
     # Done
     def _get_reward(self):
