@@ -46,16 +46,23 @@ class Pokemon:
 
     def attack(self, attack, opponent):
         L = self.level
-        if self.moves[attack].category is "Special":
-            A = self.stats["Special"]
-            D = opponent.stats["Special"]
+        attack = attack.flatten()[0]
+
+        if self.moves[attack].pp > 0:
+            if self.moves[attack].category is "Special":
+                A = self.stats["Special"]
+                D = opponent.stats["Special"]
+            else:
+                A = self.stats["Attack"]
+                D = opponent.stats["Defense"]
+            P = self.moves[attack].power
+            damage = int(math.floor(math.floor(2 * L / 5 + 2) * A * P / D) / 50) + 2
+            opponent.currHP = max(0, opponent.currHP - damage)
+            self.moves[attack].pp -= 1
         else:
-            A = self.stats["Attack"]
-            D = opponent.stats["Defense"]
-        P = self.moves[attack].power
-        damage = int(math.floor(math.floor(2 * L / 5 + 2) * A * P / D) / 50) + 2
-        opponent.currHP = max(0, opponent.currHP - damage)
-        self.moves[attack].pp -= 1
+            self.currHP = 0
+            damage = 0
+        print attack, self.moves[attack].pp, damage
         return damage
 
     def get_info(self):
