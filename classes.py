@@ -91,16 +91,9 @@ class Fight:
         return "###\n{}\n\n{}\n".format(self.pokemon1.get_info(), self.pokemon2.get_info())
 
     def attack(self, move):
-        if self.currentPokemon is 1:
-            dmg = self.pokemon1.attack(move, self.pokemon2)
-            print "{} used {}. {} Damage".format(self.pokemon1.name, self.pokemon1.moves[move].name, dmg)
-            self.currentPokemon = 2
-        elif self.currentPokemon is 2:
-            dmg = self.pokemon2.attack(move, self.pokemon1)
-            print "{} used {}. {} Damage".format(self.pokemon2.name, self.pokemon2.moves[move].name, dmg)
-            self.currentPokemon = 1
-        else:
-            raise IndexError("Invalid current pokemon selected")
+        move = move.flatten()[0]
+        self.dmg = self.current.attack(move, self.opponent)
+        # print "{} used {}({}). {} Damage".format(self.current.name, self.current.moves[move].name, move, dmg)
 
         print self.pokemon1.name, self.pokemon1.currHP
         print self.pokemon2.name, self.pokemon2.currHP
