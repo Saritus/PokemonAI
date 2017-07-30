@@ -122,7 +122,7 @@ class Fight:
 
     def _is_over(self):
         if self.current.currHP is 0:
-            print "{} won against {}".format(self.opponent.name, self.current.name)
+            print "{} lost against {}".format(self.current.name, self.opponent.name)
             return True
         elif self.opponent.currHP is 0:
             print "{} won against {}".format(self.current.name, self.opponent.name)
